@@ -32,3 +32,6 @@ class Camera:
                 break
 
             # Operations on the frame here
+
+            if cv.waitKey(1) == ord('q'):
+                break
