@@ -6,6 +6,7 @@
 
 import cv2 as cv
 
+
 class Camera:
     """
     Camera Class
