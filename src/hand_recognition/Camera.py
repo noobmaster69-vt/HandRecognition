@@ -49,7 +49,7 @@ class Camera:
             cnt = contours[ci]
             hull = cv.convexHull(cnt)
 
-            drawing = np.zeros(thresh1.shape, np.uint8)
+            drawing = np.zeros(frame.shape, np.uint8)
             cv.drawContours(drawing, [cnt], 0, (0, 255, 0), 2)
             cv.drawContours(drawing, [hull], 0, (0, 0, 255), 2)
 
