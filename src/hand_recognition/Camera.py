@@ -5,7 +5,7 @@
 """
 
 import cv2 as cv
-
+import src.hand_recognition.HandClassifier as process
 
 class Camera:
     """
@@ -33,8 +33,8 @@ class Camera:
                 break
 
             # Operations on the frame here
-            color = cv.cvtColor(frame, cv.COLOR_BGR2BGRA)
-            cv.imshow('Frame', color)
+            cv.imshow('input', frame)
+            process.HandClassifier(frame)
             # quit the program
             if cv.waitKey(1) == ord('q'):
                 break
