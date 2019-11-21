@@ -5,6 +5,7 @@
 """
 
 import cv2 as cv
+import numpy as np
 import src.hand_recognition.HandClassifier as process
 
 class Camera:
@@ -33,8 +34,27 @@ class Camera:
                 break
 
             # Operations on the frame here
-            cv.imshow('input', frame)
-            process.HandClassifier(frame)
+            gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
+            blur = cv.GaussianBlur(gray, (5, 5), 0)
+            ret, thresh1 = cv.threshold(blur, 70, 255, cv.THRESH_BINARY_INV + cv.THRESH_OTSU)
+            contours, hierarchy = cv.findContours(thresh1, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)
+            max_area = 0
+            ci = 0
+            for i in range(len(contours)):
+                cnt = contours[i]
+                area = cv.contourArea(cnt)
+                if area > max_area:
+                    max_area = area
+                    ci = i
+            cnt = contours[ci]
+            hull = cv.convexHull(cnt)
+
+            drawing = np.zeros(thresh1.shape, np.uint8)
+            cv.drawContours(drawing, [cnt], 0, (0, 255, 0), 2)
+            cv.drawContours(drawing, [hull], 0, (0, 0, 255), 2)
+
+            cv.imshow('hand', thresh1)
+
             # quit the program
             if cv.waitKey(1) == ord('q'):
                 break

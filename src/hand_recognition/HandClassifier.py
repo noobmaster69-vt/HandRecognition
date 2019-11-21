@@ -22,5 +22,4 @@ class HandClassifier:
         gray = cv.cvtColor(self.pic, cv.COLOR_BGR2GRAY)
         blur = cv.GaussianBlur(gray, (5, 5), 0)
         ret, thresh = cv.GaussianBlur(blur, (5, 5), 0)
-        cv.imshow('Black and White', thresh)
         return blur
