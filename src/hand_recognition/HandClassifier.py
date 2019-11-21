@@ -14,6 +14,6 @@ class HandClassifier:
 
     def processImage(self):
         """
-        process
+        Process the image and recognize the hand portion of the code
         :return:
         """
