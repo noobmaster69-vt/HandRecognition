@@ -34,7 +34,9 @@ class Camera:
             # Operations on the frame here
             color = cv.cvtColor(frame, cv.COLOR_BAYER_BG2BGR)
             cv.imshow('Frame', color)
+            # quit the program
             if cv.waitKey(1) == ord('q'):
                 break
+        # close the camera
         self.cap.release()
         cv.destroyAllWindows()

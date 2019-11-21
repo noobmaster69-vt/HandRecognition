@@ -5,8 +5,15 @@
 """
 
 class HandClassifier:
-    def __init__(self):
+    def __init__(self, picture):
         """
         Constructor
         """
         self.k = 0
+        self.pic = picture
+
+    def processImage(self):
+        """
+        process
+        :return:
+        """
